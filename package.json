@@ -1,7 +1,7 @@
 {
-  "name": "RoloToken-backend",
+  "name": "AXE-DEV-ArbitrageBot",
   "version": "1.0.0",
-  "description": "Node / Firebase / Express",
+  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -10,21 +10,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RolandoDrRobot/RoloToken-Backend.git"
+    "url": "git+https://github.com/RolandoDrRobot/AXE-DEV-ArbitrageBot.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Rolando Arguello - AXE Capital",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RolandoDrRobot/RoloToken-backend/issues"
+    "url": "https://github.com/RolandoDrRobot/AXE-DEV-ArbitrageBot/issues"
   },
-  "homepage": "https://github.com/RolandoDrRobot/RoloToken-Backend#readme",
+  "homepage": "https://github.com/RolandoDrRobot/AXE-DEV-ArbitrageBot#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^11.0.0",
     "express": "^4.17.2",
     "firebase-admin": "^10.0.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "@uniswap/sdk": "^3.0.3",
+    "web3": "^1.3.6",
+    "@ethersproject/contracts": "^5.3.0",
+    "@ethersproject/providers": "^5.3.1",
+    "@ethersproject/solidity": "^5.3.0",
+    "@studydefi/money-legos": "^2.4.2",
+    "@truffle/hdwallet-provider": "^1.4.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

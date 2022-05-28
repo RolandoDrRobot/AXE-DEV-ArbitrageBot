@@ -1,30 +1,14 @@
-const express = require('express');
-const cors = require('cors');
-import { Request, Response } from 'express';
-import { createUser, login, news } from './database';
+import { ChainId, Token, WETH, Fetcher, Route } from '@uniswap/sdk';
 
-// Initialize server
-const moviesServer = express();
-moviesServer.use(cors());
-moviesServer.use(express.json());
-moviesServer.use(express.urlencoded({ extended: false }));
-moviesServer.listen(443, () => {
-  console.log(`Server on port 443`);
-});
+async function watcher() {
+  const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18);
 
-// Server APIs
-moviesServer.post('/createUser', (req: Request, res: Response) => {
-  createUser(req.body.email, req.body.password, req.body.name)
-    .then((result) => { res.json(result); });
-});
+  // note that you may want/need to handle this async code differently,
+  // for example if top-level await is not an option
+  const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId]);
 
-moviesServer.post('/login', (req: Request, res: Response) => {
-  login(req.body.email, req.body.password)
-    .then((result) => { console.log(result) ; res.json(result); });
-});
+  const route = new Route([pair], WETH[DAI.chainId]);
 
-moviesServer.get('/news', (req: Request, res: Response) => {
-  news().then(function(result){
-    res.json(result);
-  });
-});
+  console.log(route.midPrice.toSignificant(6))
+}
+watcher();
