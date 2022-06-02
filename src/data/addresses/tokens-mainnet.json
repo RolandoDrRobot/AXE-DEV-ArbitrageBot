@@ -1,0 +1,50 @@
+{
+  "pools": {
+    "USDC_ETH": {
+      "chainId": 3,
+      "tokenASymbol": "USDC",
+      "tokenADecimals": 1000000,
+      "tokenAAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "tokenBSymbol": "ETH",
+      "tokenBDecimals": 1000000000000000000,
+      "tokenBAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    },
+    "WBTC_ETH": {
+      "chainId": 3,
+      "tokenASymbol": "WBTC",
+      "tokenADecimals": 100000000,
+      "tokenAAddress": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+      "tokenBSymbol": "ETH",
+      "tokenBDecimals": 1000000000000000000,
+      "tokenBAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    },
+    "ETH_USDT": {
+      "chainId": 3,
+      "tokenASymbol": "ETH",
+      "tokenADecimals": 1000000000000000000,
+      "tokenAAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "tokenBSymbol": "USDT",
+      "tokenBDecimals": 1000000,
+      "tokenBAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+    },
+    "DAI_ETH": {
+      "chainId": 3,
+      "tokenASymbol": "DAI",
+      "tokenADecimals": 1000000000000000000,
+      "tokenAAddress": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "tokenBSymbol": "ETH",
+      "tokenBDecimals": 1000000000000000000,
+      "tokenBAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    },
+    "DAI_USDC": {
+      "chainId": 3,
+      "tokenASymbol": "DAI",
+      "tokenADecimals": 1000000000000000000,
+      "tokenAAddress": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "tokenBSymbol": "USDC",
+      "tokenBDecimals": 1000000,
+      "tokenBAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    }
+  }
+}
+

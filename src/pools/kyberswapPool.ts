@@ -1,40 +1,39 @@
 require('dotenv').config();
-import {
-  ChainId,
-  Token,
-  WETH,
-  Fetcher,
-  Trade,
-  Route,
-  TokenAmount,
-  TradeType,
-} from '@dynamic-amm/sdk';
+const Web3 = require('web3');
+const abis = require('../data/abis');
 
-async function kyberswapPool() {
-  // DMM Factory Address if using Ethereum Mainnet
-  const DMMFactoryAddress = '0x833e4083B7ae46CeA85695c4f7ed25CDAd8886dE';
-  
-  const DAI = new Token(
-    ChainId.MAINNET,
-    '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-    18,
+const web3 = new Web3(
+  // Ponemos el Provider para inicializar web 3
+  new Web3.providers.WebsocketProvider(process.env.WS_INFURA_URL)
+);
+
+async function kyberswapPool(pool:any, kyberNetworkProxy:any) {
+  const kyber = new web3.eth.Contract(
+    abis.kyber.kyberNetworkProxy,
+    kyberNetworkProxy
   );
-  const pools = await Fetcher.fetchPairData(
-    DAI,
-    WETH[DAI.chainId],
-    DMMFactoryAddress,
-  );
-  
-  const route = new Route(pools, WETH[DAI.chainId]);
-  
-  const trade = new Trade(
-    route,
-    new TokenAmount(WETH[DAI.chainId], '1000000000000000000'),
-    TradeType.EXACT_INPUT,
-  );
-  
-  console.log(trade.executionPrice.toSignificant(6));
-  console.log(trade.nextMidPrice.toSignificant(6));
+
+  let ethPrice:any;
+  const updatePrice = async () => {
+    const results = await kyber
+      .methods
+      .getExpectedRate(
+        pool.tokenAAddress,
+        pool.tokenBAddress,
+        1
+      )
+      .call();
+
+    // We enter as param eth unit -> so we got how much wei It is
+    const ONE_ETH_WEI = web3.utils.toBN(web3.utils.toWei('1'));
+    // Here we do the necessary conversion to have a readable ETH price
+    ethPrice = web3.utils.toBN('1').mul(web3.utils.toBN(results.expectedRate)).div(ONE_ETH_WEI);
+    console.log(ethPrice.toString());
+  }
+  await updatePrice();
+  // Actualizamos la variable ethPrice cada 15 segundos
+  setInterval(updatePrice, 15000);
+
 }
 
 export default kyberswapPool;
